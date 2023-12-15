@@ -27,8 +27,10 @@ public class Category {
 
 
 	//Constructor
+    public Category() { }
     public Category(String name) {
     	
+    	setName(name);
     }
     
     

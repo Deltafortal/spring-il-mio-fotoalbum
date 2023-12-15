@@ -37,9 +37,9 @@ public class ImageService {
 	
 	
 	
-	public List<Image> findByName(String name) {
+	public List<Image> findByName(String title) {
 		
-		return imageRepo.findByNameContainingIgnoreCase(name);
+		return imageRepo.findByTitleContainingIgnoreCase(title);
 	}
 	
 	

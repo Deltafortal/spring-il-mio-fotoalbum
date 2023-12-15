@@ -1,7 +1,6 @@
 package org.java.spring.auth.db.repo;
 
-import javax.management.relation.Role;
-
+import org.java.spring.auth.db.pojo.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
