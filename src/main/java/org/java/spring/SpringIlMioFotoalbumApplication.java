@@ -64,7 +64,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		
 		//Role
 		Role roleUser = new Role("USER");
-		Role roleAdmin = new Role("USER");
+		Role roleAdmin = new Role("ADMIN");
 		Role roleSuperAdmin = new Role("SUPER_ADMIN");
 		
 		
