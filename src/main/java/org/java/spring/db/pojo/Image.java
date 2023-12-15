@@ -3,6 +3,7 @@ package org.java.spring.db.pojo;
 import java.util.Arrays;
 import java.util.List;
 
+import org.java.spring.auth.db.pojo.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
