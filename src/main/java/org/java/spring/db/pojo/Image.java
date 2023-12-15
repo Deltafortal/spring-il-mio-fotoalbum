@@ -28,6 +28,7 @@ public class Image {
     
     
     //Constructor
+    public Image() {}
     public Image(String title, String description, String url, boolean isVisible, User user, Category...categories) {
     	
     	setTitle(title);

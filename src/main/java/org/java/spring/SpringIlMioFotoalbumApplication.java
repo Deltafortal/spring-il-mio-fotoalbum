@@ -78,20 +78,20 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		
 		
 		//User
-		User userDev = new User("userDev", pws, roleUser);
-		User adminDev = new User("adminDev", pws, roleAdmin);
-		User adminSuperDev = new User("adminSuperDev", pws, roleSuperAdmin);
+		User user = new User("user", pws, roleUser);
+		User admin = new User("admin", pws, roleAdmin);
+		User adminSuper = new User("adminSuper", pws, roleSuperAdmin);
 		
-		userService.save(userDev);
-		userService.save(adminDev);
-		userService.save(adminSuperDev);
+		userService.save(user);
+		userService.save(admin);
+		userService.save(adminSuper);
 		
 		
 		//Images
-		Image img = new Image("Drake", "Descrizione del drago", "blabla", true, userDev, macro);
+		Image img = new Image("Drake", "Descrizione del drago", "blabla", true, user, macro);
 		imageServ.save(img);
 		
-		imageServ.save(new Image("Super Buff", "Descrizione del buff", "blablaurl", true, userDev, buff));
+		imageServ.save(new Image("Super Buff", "Descrizione del buff", "blablaurl", true, user, buff));
 		
 	}
 }
