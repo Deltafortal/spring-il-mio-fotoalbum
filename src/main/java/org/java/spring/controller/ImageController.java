@@ -9,10 +9,15 @@ import org.java.spring.db.serv.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.validation.Valid;
 
 
 
@@ -26,6 +31,7 @@ public class ImageController {
     
     @Autowired
     private CategoryService categoryService;
+    
     
     
     //Index
@@ -70,4 +76,30 @@ public class ImageController {
     	return "images/image-form";
     }
     
+    
+    //Store
+    @PostMapping("/create")
+    public String storeImage(Model model, @Valid @ModelAttribute Image image, BindingResult bindingResult) {
+    	
+    	
+    	return saveImage(model, image, bindingResult);
+    }
+    
+    
+    
+    
+    
+    
+    //Other Functions
+    public String saveImage(Model model, @ModelAttribute Image image, BindingResult bindingResult) {
+    	
+    	if (bindingResult.hasErrors()) {
+			model.addAttribute("image", image);
+			return "image-form";
+			
+		} else {
+			imageService.save(image);
+			return "redirect:/admin/images";
+		}
+    }
 }
