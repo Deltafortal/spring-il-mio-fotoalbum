@@ -87,6 +87,19 @@ public class ImageController {
     
     
     
+    //Edit
+    @GetMapping("/edit/{id}")
+    public String editImage(Model model, @PathVariable Long id) {
+    	
+    	Image image = imageService.findById(id);
+    	List<Category> categories = categoryService.findAll();
+    	
+    	model.addAttribute("image", image);
+    	model.addAttribute("categories", categories);
+    	
+    	
+    	return "images/image-form";
+    }
     
     
     
