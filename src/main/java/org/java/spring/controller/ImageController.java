@@ -2,7 +2,9 @@ package org.java.spring.controller;
 
 import java.util.List;
 
+import org.java.spring.db.pojo.Category;
 import org.java.spring.db.pojo.Image;
+import org.java.spring.db.serv.CategoryService;
 import org.java.spring.db.serv.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +24,11 @@ public class ImageController {
     private ImageService imageService;
     
     
+    @Autowired
+    private CategoryService categoryService;
     
+    
+    //Index
     @GetMapping
     public String index(Model model, @RequestParam(required = false) String q) {
 
@@ -36,6 +42,9 @@ public class ImageController {
     }
     
     
+    
+    
+    //Show
     @GetMapping("/{id}")
     public String getImage(@PathVariable Long id, Model model) {
 
@@ -44,4 +53,21 @@ public class ImageController {
     	
         return "images/image-detail";
     }
+    
+    
+    
+    //Create
+    @GetMapping("/create")
+    public String createImage(Model model) {
+    	
+    	
+    	Image image = new Image();
+    	List<Category> categories = categoryService.findAll();
+    	
+    	model.addAttribute("image", image);
+    	model.addAttribute("categories", categories);
+    	
+    	return "images/image-form";
+    }
+    
 }
