@@ -103,6 +103,15 @@ public class ImageController {
     
     
     
+    //Update
+    @PostMapping("/edit/{id}")
+    public String updateImage(Model model, @Valid @ModelAttribute Image image, BindingResult bindingResult) {
+    	
+    	return saveImage(model, image, bindingResult);
+    }
+    
+    
+    
     //Other Functions
     public String saveImage(Model model, @ModelAttribute Image image, BindingResult bindingResult) {
     	
