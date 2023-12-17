@@ -112,6 +112,25 @@ public class ImageController {
     
     
     
+    
+    //Delete
+    @PostMapping("/delete/{id}")
+    public String deleteImage(@PathVariable Long id) {
+    	
+    	
+    	Image image = imageService.findById(id);
+    	
+    	image.clearCategories();
+    	imageService.save(image);
+    	
+    	imageService.delete(image);
+    	
+    	return "redirect:/admin/images";
+    }
+    
+    
+    
+    
     //Other Functions
     public String saveImage(Model model, @ModelAttribute Image image, BindingResult bindingResult) {
     	

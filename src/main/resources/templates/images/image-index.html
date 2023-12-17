@@ -58,7 +58,7 @@
 					  <a th:href="@{/admin/images/{id}(id=${image.id})}" class="btn btn-primary me-3">Dettagli</a>
 					  <a th:href="@{/admin/images/edit/{id} (id=${image.id})}" class="btn btn-success me-3" sec:authorize="hasAuthority('ADMIN')">
 						  Modifica</a>
-					  <form action="" method="POST" sec:authorize="hasAuthority('ADMIN')">
+					  <form th:action="@{/admin/images/delete/{id} (id=${image.id})}" method="POST" sec:authorize="hasAuthority('ADMIN')">
 					  	<input type="submit" value="Cancella" class="btn btn-danger"></input>					  
 					  </form>
 				  </td>
