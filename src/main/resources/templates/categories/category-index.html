@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+
+	<!-- Bootstrap CSS -->
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+</head>
+<body>
+
+	<div class="container mt-5">
+			
+		<div class="row">
+			<div class="col-10">
+				<h1>Le categorie:</h1>					
+			</div>
+			<div class="col-2">
+				<a class="btn btn-success" href="">Nuova categoria</a>
+			</div>
+				
+		</div>
+		
+		
+		<table class="table mt-5">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Nome</th>
+			      <th scope="col"></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="category : ${categories}" th:object="${category}">
+			      <th scope="row" th:text="*{id}"></th>
+			      <td scope="row" th:text="*{name}"></th>
+			      <td scope="row" class="d-flex align-items-center">
+					  <form action="" method="POST">
+					  	<input type="submit" value="Cancella" class="btn btn-danger"></input>					  
+					  </form>
+				  </td>
+			    </tr>
+			  </tbody>
+		</table>
+		
+		
+	</div>
+
+</body>
+</html>
