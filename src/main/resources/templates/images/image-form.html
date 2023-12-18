@@ -19,6 +19,7 @@
 				<div class="col-4">
 					<label for="title-name" class="form-label">Titolo</label>
 					<input type="text" class="form-control" id="title-name" th:field="*{title}">
+					<div th:replace="fragments/errors :: errorDiv('title')" />
 				  </div>
 				
 				

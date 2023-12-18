@@ -81,7 +81,6 @@ public class ImageController {
     @PostMapping("/create")
     public String storeImage(Model model, @Valid @ModelAttribute Image image, BindingResult bindingResult) {
     	
-    	
     	return saveImage(model, image, bindingResult);
     }
     
@@ -132,15 +131,26 @@ public class ImageController {
     
     
     //Other Functions
-    public String saveImage(Model model, @ModelAttribute Image image, BindingResult bindingResult) {
+    public String saveImage(Model model, @Valid @ModelAttribute Image image, BindingResult bindingResult) {
+    	
     	
     	if (bindingResult.hasErrors()) {
+    		
 			model.addAttribute("image", image);
-			return "image-form";
+			return "images/image-form";
 			
-		} else {
+		} 
+    	
+    	try {
+    		
 			imageService.save(image);
-			return "redirect:/admin/images";
+			
+		} catch(Exception e) {
+			
+			model.addAttribute("image", image);
+			return "images/image-form";
 		}
+    	
+		return "redirect:/admin/images";
     }
 }

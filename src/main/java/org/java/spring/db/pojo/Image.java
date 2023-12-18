@@ -3,6 +3,7 @@ package org.java.spring.db.pojo;
 import java.util.Arrays;
 import java.util.List;
 
+import org.hibernate.validator.constraints.Length;
 import org.java.spring.auth.db.pojo.User;
 
 import jakarta.persistence.Entity;
@@ -12,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Image {
@@ -20,9 +22,14 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+	@Length(min = 2, max = 60, message = "Il titolo deve essere compreso tra 1 e 60 caratteri")
     private String title;
+	
     private String description;
+    
     private String url;
+    
+    @NotNull(message = "La visibilità non può essere nulla")
     private boolean isVisible;
 
     
