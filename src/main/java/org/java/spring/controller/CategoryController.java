@@ -3,6 +3,7 @@ package org.java.spring.controller;
 import java.util.List;
 
 import org.java.spring.db.pojo.Category;
+import org.java.spring.db.pojo.Image;
 import org.java.spring.db.serv.CategoryService;
 import org.java.spring.db.serv.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -62,6 +64,26 @@ public class CategoryController {
 	public String storeCategory(Model model, @Valid @ModelAttribute Category category, BindingResult bindingResult) {
 		
 		categoryService.save(category);
+		
+		return "redirect:/admin/categories";
+	}
+	
+	
+	
+	//Delete
+	@PostMapping("/delete/{id}")
+	public String deleteCategory(@PathVariable Long id) {
+		
+		Category category = categoryService.findById(id);
+		
+		List<Image> images = category.getImages();
+		images.forEach(i -> {
+			
+			i.getCategories().remove(category);
+			imageService.save(i);
+		});
+		
+		categoryService.delete(category);
 		
 		return "redirect:/admin/categories";
 	}

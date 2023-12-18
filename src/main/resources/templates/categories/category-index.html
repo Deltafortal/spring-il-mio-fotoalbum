@@ -35,7 +35,7 @@
 			      <th scope="row" th:text="*{id}"></th>
 			      <td scope="row" th:text="*{name}"></th>
 			      <td scope="row" class="d-flex align-items-center">
-					  <form action="" method="POST">
+					  <form th:action="@{/admin/categories/delete/{id} (id = ${category.id})}" method="POST">
 					  	<input type="submit" value="Cancella" class="btn btn-danger"></input>					  
 					  </form>
 				  </td>
