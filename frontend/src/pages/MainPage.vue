@@ -1,11 +1,12 @@
 <script>
 
 //Import
+import  ContactForm from '../components/ContactForm.vue'
 import axios from 'axios';
 
 export default {
 
-    components: {},
+    components: { ContactForm },
     
     data() {
         return {
@@ -15,8 +16,8 @@ export default {
 
     methods: {
 
-        fetchImage(){
-            axios.get('http://localhost:8080/api/admin/images').then(response => {
+        async fetchImage(){
+            await axios.get('http://localhost:8080/api/admin/images').then(response => {
                 this.images = response.data;
             }).catch(error => {
                 console.error('Errore nella chiamata API', error);
@@ -24,7 +25,7 @@ export default {
         },
     },
 
-    created() {
+    mounted() {
         this.fetchImage();
     }
 }
@@ -43,6 +44,8 @@ export default {
         <p class="card-text">{{ image.description }}</p>
     </div>
     </div>
+
+    <ContactForm />
 
 </template>
 
