@@ -33,7 +33,7 @@ public class AuthConf {
 	        		"/*/*/*/create"
 	        	).hasAuthority("ADMIN")
 	        .requestMatchers("/api/**").permitAll()
-	        .requestMatchers("/**").hasAnyAuthority("USER", "ADMIN", "SUPERADMIN")
+	        .requestMatchers("/**").permitAll() //hasAnyAuthority("USER", "ADMIN", "SUPERADMIN")
 	        .and().formLogin()
 	        .and().logout()
 	    ;
