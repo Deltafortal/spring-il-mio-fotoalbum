@@ -1,4 +1,6 @@
 <script>
+//Import
+import axios from 'axios';
 
 export default {
   data() {
@@ -11,14 +13,11 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$axios.post('/api/contact', this.formData)
-        .then(response => {
+      axios.post('http://localhost:8080/api/messages', this.formData)
+      .then(response => {
           console.log('Messaggio inviato con successo', response);
-          this.resetForm();
-        })
-        .catch(error => {
-          console.error('Errore nell\'invio del messaggio', error);
-        });
+          this.resetForm()
+      });
     },
     resetForm() {
       this.formData.email = '';
