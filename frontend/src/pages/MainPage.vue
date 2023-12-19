@@ -37,12 +37,14 @@ export default {
 
 <template>
 
-    <div class="card" style="width: 18rem;" v-for="image in this.images">
-    <img :src="image.url" class="card-img-top" :alt="image.title">
-    <div class="card-body">
-        <h5 class="card-title">{{ image.title }}</h5>
-        <p class="card-text">{{ image.description }}</p>
-    </div>
+    <div class="card-container">
+        <div class="card" style="width: 18rem;" v-for="image in this.images">
+            <img :src="image.url" class="card-img-top" :alt="image.title">
+            <div class="card-body">
+                <h5 class="card-title">{{ image.title }}</h5>
+                <p class="card-text">{{ image.description }}</p>
+            </div>
+        </div>
     </div>
 
     <ContactForm />
@@ -53,5 +55,18 @@ export default {
 
 
 <style scoped lang="scss">
+
+
+.card-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .card {
+        flex-basis: calc(100% / 4);
+    }
+}
 
 </style>

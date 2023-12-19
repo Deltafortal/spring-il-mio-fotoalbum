@@ -32,7 +32,7 @@ export default {
 <style lang="scss">
 
   main {
-    height: 90vh;
+    height: 80vh;
     overflow-y: auto;
   }
 
