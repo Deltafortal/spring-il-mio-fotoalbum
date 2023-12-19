@@ -137,7 +137,7 @@ public class ImageController {
     	
     	imageService.delete(image);
     	
-    	return "redirect:/admin/images";
+    	return "redirect:/{admin}/images";
     }
     
     
@@ -153,17 +153,15 @@ public class ImageController {
 			return "images/image-form";
 			
 		} 
-    	
     	try {
     		
 			imageService.save(image);
-			
 		} catch(Exception e) {
 			
 			model.addAttribute("image", image);
 			return "images/image-form";
 		}
     	
-		return "redirect:/admin/images";
+		return "redirect:/{admin}/images";
     }
 }
