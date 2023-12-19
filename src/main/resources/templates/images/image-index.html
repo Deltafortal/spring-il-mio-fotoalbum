@@ -9,6 +9,13 @@
 
 <body>
 	
+	
+	<!-- Header -->
+	<header th:replace="fragments/header :: header('Pizzeria da Aldo')">
+			
+	</header>
+	
+	
 	<div class="container">
 		
 		<main class="mt-5 text-center">
@@ -51,7 +58,7 @@
 			  <tbody>
 			    <tr th:each="image : ${images}" th:object="${image}">
 			      <th scope="row" th:text="*{id}"></th>
-			      <td scope="row" th:text="*{url}"></th>
+			      <td scope="row"><img th:src="*{url}"></th>
 			      <td scope="row" th:text="*{title}"></td>
 			      <td scope="row" th:text="*{description}"></td>
 			      <td scope="row" class="d-flex align-items-center">

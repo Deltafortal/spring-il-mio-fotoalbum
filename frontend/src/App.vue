@@ -33,6 +33,7 @@ export default {
 
   main {
     height: 90vh;
+    overflow-y: auto;
   }
 
 </style>

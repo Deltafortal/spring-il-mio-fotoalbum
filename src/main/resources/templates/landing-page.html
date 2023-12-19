@@ -9,6 +9,12 @@
 </head>
 <body>
 	
+	<!-- Header -->
+	<header th:replace="fragments/header :: header('Pizzeria da Aldo')">
+			
+	</header>
+	
+	
 	<div class="container">
 		<h1 th:text="'Benvenuto: ' + ${user.username}"></h1>
 		

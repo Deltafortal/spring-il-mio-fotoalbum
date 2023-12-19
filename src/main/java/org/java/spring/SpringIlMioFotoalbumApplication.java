@@ -88,10 +88,15 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		
 		
 		//Images
-		Image img = new Image("Drake", "Descrizione del drago", "blabla", true, user, macro);
+		Image img = new Image("Drake", "Descrizione del drago", "https://picsum.photos/id/237/200/200", true, admin, macro);
 		imageServ.save(img);
 		
-		imageServ.save(new Image("Super Buff", "Descrizione del buff", "blablaurl", true, user, buff));
+		imageServ.save(new Image("Super Buff", "Descrizione del buff", "https://picsum.photos/id/231/200/200", true, admin, buff));
 		
+		imageServ.save(new Image("Bellissima Immagine", "Descrizione dell'immagine bellissima", "https://picsum.photos/id/402/200/200", true, user, buff));
+		
+		
+		imageServ.save(new Image("Immagine da un altro utente", "immagine da  un utente diverso", "https://picsum.photos/id/5/200/200", true, user, buff));
+		imageServ.save(new Image("Montagna bellissima", "Montagna bellissima", "https://picsum.photos/id/109/200/200", true, admin, buff));
 	}
 }
