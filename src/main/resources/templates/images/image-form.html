@@ -22,8 +22,8 @@
 		
 		<form class="mt-5" id="image-form" method="POST" th:object="${image}"> 
 			
-			<div>
-				<label for="user-id" class="form-label">Titolo</label>
+			<div class="d-none">
+				<label for="user-id" class="form-label">User-id</label>
 				<input type="text" class="form-control" id="user-id" th:field="${image.user}">
 			</div>
 
