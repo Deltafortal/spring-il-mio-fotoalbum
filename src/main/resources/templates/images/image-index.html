@@ -20,7 +20,7 @@
 				
 				
 				<div class="col-2" sec:authorize="hasAuthority('ADMIN')">
-					<a class="btn btn-success" href="/admin/images/create">Nuova Immagine</a>
+					<a class="btn btn-success" th:href="@{/{admin}/images/create (admin=${user})}">Nuova Immagine</a>
 				</div>
 				<div class="col-2">
 					<a class="btn btn-success" href="/admin/categories">Categorie</a>

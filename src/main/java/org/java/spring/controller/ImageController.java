@@ -2,6 +2,8 @@ package org.java.spring.controller;
 
 import java.util.List;
 
+import org.java.spring.auth.db.pojo.User;
+import org.java.spring.auth.db.service.UserService;
 import org.java.spring.db.pojo.Category;
 import org.java.spring.db.pojo.Image;
 import org.java.spring.db.serv.CategoryService;
@@ -32,6 +34,9 @@ public class ImageController {
     @Autowired
     private CategoryService categoryService;
     
+    @Autowired
+    private UserService userService;
+    
     
     
     //Index
@@ -40,9 +45,10 @@ public class ImageController {
 
     	
 		List<Image> images = q == null ? imageService.findByUserId(admin) : imageService.findByTitle(q);
-		System.out.println(imageService.findByUserId(admin));
+		Long user = admin;
 		
 		model.addAttribute("images", images);
+		model.addAttribute("user", user);
 		model.addAttribute("q", q == null ? "" : q);
     	
         return "images/image-index";
@@ -65,14 +71,20 @@ public class ImageController {
     
     //Create
     @GetMapping("/create")
-    public String createImage(Model model) {
+    public String createImage(@PathVariable Long admin, Model model) {
     	
     	
     	Image image = new Image();
+    	User user = userService.findById(admin);
+    	image.setUser(user);
+    	
     	List<Category> categories = categoryService.findAll();
+    	
+    	System.out.println("User = " + user);
     	
     	model.addAttribute("image", image);
     	model.addAttribute("categories", categories);
+    	model.addAttribute("user", user);
     	
     	return "images/image-form";
     }
