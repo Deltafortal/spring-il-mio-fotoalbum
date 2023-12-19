@@ -1,6 +1,8 @@
 package org.java.spring.auth.conf;
 
+import org.java.spring.auth.db.pojo.User;
 import org.java.spring.auth.db.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +21,8 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class AuthConf {
 
+	@Autowired
+	UserService userService;
 	
 	@Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -34,7 +38,10 @@ public class AuthConf {
 	        	).hasAuthority("ADMIN")
 	        .requestMatchers("/api/**").permitAll()
 	        .requestMatchers("/**").permitAll() //hasAnyAuthority("USER", "ADMIN", "SUPERADMIN")
-	        .and().formLogin()
+	        .and().
+	        formLogin()
+	            .defaultSuccessUrl("/")
+	            .permitAll()
 	        .and().logout()
 	    ;
 		
