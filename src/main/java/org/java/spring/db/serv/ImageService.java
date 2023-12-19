@@ -37,13 +37,26 @@ public class ImageService {
 	
 	
 	
+	
+	//Custom Query
 	public List<Image> findByTitle(String title) {
 		
 		return imageRepo.findByTitleContainingIgnoreCase(title);
 	}
 	
+    public List<Image> findByUserId(Long userId) {
+        return imageRepo.findByUserId(userId);
+    }
+    
+    public Image findByUserIdAndId(Long userId, Long id) {
+        return imageRepo.findByUserIdAndId(userId, id);
+    }
 	
 	
+	
+    
+    
+    
 	public void save(Image image) {
 		
 		imageRepo.save(image);

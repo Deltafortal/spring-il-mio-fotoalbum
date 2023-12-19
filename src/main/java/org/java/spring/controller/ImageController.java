@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 
 
 @Controller
-@RequestMapping("/admin/images")
+@RequestMapping("/{admin}/images")
 public class ImageController {
 
     @Autowired
@@ -36,10 +36,11 @@ public class ImageController {
     
     //Index
     @GetMapping
-    public String index(Model model, @RequestParam(required = false) String q) {
+    public String index(@PathVariable Long admin, Model model, @RequestParam(required = false) String q) {
 
     	
-		List<Image> images = q == null ? imageService.findAll() : imageService.findByTitle(q);
+		List<Image> images = q == null ? imageService.findByUserId(admin) : imageService.findByTitle(q);
+		System.out.println(imageService.findByUserId(admin));
 		
 		model.addAttribute("images", images);
 		model.addAttribute("q", q == null ? "" : q);
@@ -52,9 +53,9 @@ public class ImageController {
     
     //Show
     @GetMapping("/{id}")
-    public String getImage(@PathVariable Long id, Model model) {
+    public String getImage(@PathVariable Long admin, @PathVariable Long id, Model model) {
 
-    	Image image = imageService.findById(id);
+    	Image image = imageService.findByUserIdAndId(admin, id);
     	model.addAttribute("image", image);
     	
         return "images/image-detail";
